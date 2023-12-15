@@ -14,14 +14,12 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--providers.docker.network=web"
       - "--entrypoints.web.address=:80"
+      - "--entrypoints.web-secure.address=:443"
       - "--providers.docker"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`proxy.ryzen.bonnell.me.uk`)"
-      - "traefik.http.routers.traefik.entrypoints=web"
     ports:
       - "80:80"
       - "8080:8080"
+      - "443:443"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     networks:
